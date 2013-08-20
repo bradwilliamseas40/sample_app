@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<title>Flytographer Book a Shoot</title>
+<script type="text/javascript" src="//use.typekit.net/www5cza.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<link rel="stylesheet" href="css/styles.css" type="text/css">
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/scripts.js"></script>
+
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<![endif]-->
+
+<script>
+function parseURL(url) {
+    var a =  document.createElement('a');
+    a.href = url;
+    return {
+        source: url,
+        protocol: a.protocol.replace(':',''),
+        host: a.hostname,
+        port: a.port,
+        query: a.search,
+        params: (function(){
+            var ret = {},
+                seg = a.search.replace(/^\?/,'').split('&'),
+                len = seg.length, i = 0, s;
+            for (;i<len;i++) {
+                if (!seg[i]) { continue; }
+                s = seg[i].split('=');
+                ret[s[0]] = s[1];
+            }
+            return ret;
+        })(),
+        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+        hash: a.hash.replace('#',''),
+        path: a.pathname.replace(/^([^\/])/,'/$1'),
+        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+        segments: a.pathname.replace(/^\//,'').split('/')
+    };
+}
+
+var incomingURL = parseURL(document.URL);
+
+// Set form ID and customers name for webpage display
+var customer_name = incomingURL.params.first_name
+var GATID = incomingURL.params.utm_term
+var total_transaction = incomingURL.params.total
+
+// confirm(incomingURL.params.utm_term);
+
+
+// Fire the GATID
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38816466-1']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_addTrans',
+    GATID,           // transaction ID - required
+    'Flytographer',  // affiliation or store name
+    total_transaction,          // total - required
+    '',           // tax
+    '',              // shipping
+    '',       // city
+    '',     // state or province
+    ''             // country
+  ]);
+
+   // add item might be called for every item in the shopping cart
+   // where your ecommerce engine loops through each item in the cart and
+   // prints out _addItem for each
+  _gaq.push(['_addItem',
+    GATID,           // transaction ID - required
+    'Photos',           // SKU/code - required
+    'photo shoot',        // product name
+    '',   // category or variation
+    total_transaction,          // unit price - required
+    '1'               // quantity - required
+  ]);
+  _gaq.push(['_trackTrans']); //submits transaction to the Analytics servers
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+</head>
+
+<body>
+
+<div id="push"></div>
+<header>
+	<section>
+    	<div id="social_links">
+        	<a href="#"><img src="img/icon_social-twitter.png" width="22" height="22" alt="Twitter"></a>
+            <a href="#"><img src="img/icon_social-facebook.png" width="22" height="22" alt="Facebook"></a>
+        </div>
+		<a id="logo" href="./"><img src="img/flytographer_logo.png" width="483" height="108"></a>
+        <div id="tagline"><img src="img/tagline-header.png" width="338" height="13" alt="Documentary-Style Travel Photos, Together."></div>
+    </section>
+</header>
+<nav>
+	<section>
+		<a href="./">Home</a>
+    	<a href="about.html">About</a>
+    	<a class="active" href="book.html">Book a Shoot</a>
+    	<a href="join.html">Join Flytographer</a>
+    	<a href="gift.html">Gift Cards</a>
+    	<a href="love.html">Customer Love</a>
+    	<a href="contact.html">Contact</a>
+    	<a href="blog.html">Blog</a>
+	</section>
+</nav>
+<div id="navBtm"></div>
+
+
+
+<section>
+	<div class="inner" style= 'border:0px' >
+    
+		<br>
+        <p>THANK YOU <b><span id="customer_name"></span></b> for booking Flytographer! </p>
+        
+        <p>Our confirmation email is flying to your inbox right now, and our team will be in touch shortly to finalize the details (time, date, location, photographer). </p>        
+	</div>
+</section>
+
+
+
+
+<footer>
+	<div id="mainFoot">
+		<div id="footer_text">
+	    	<span>Get Updates &amp; News!</span>
+	        sign up and get news, deals and more text will go in here...
+	    </div>
+	    <div id="footer_form">
+	    	Form Goes Here...
+		</div>
+	</div>
+	<div id="footSp"></div>
+	<div id="subfoot">copyright 2013, all rights reserved. site by <a href="http://peniferella.com" target="_blank">peniferella</a>.</div>
+</footer>
+
+</body>
+<script type="text/javascript">
+$('#customer_name').html(customer_name);
+</script>
+</html>

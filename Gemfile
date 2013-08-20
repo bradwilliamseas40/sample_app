@@ -3,6 +3,10 @@ ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc1'
+
+# Install Twitter Bootstrap
+gem 'bootstrap-sass','2.3.2.0'
+
 gem 'pg', '0.15.1'
 #yaml_db was used to migrate DB from SQLite3 to postgreSQL
 gem 'yaml_db'
@@ -24,6 +28,8 @@ group :test do
 	gem 'capybara','2.1.0'
 	gem 'growl', '1.0.3'
 end
+
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.0.rc1'
