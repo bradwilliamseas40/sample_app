@@ -6,6 +6,8 @@ gem 'rails', '4.0.0.rc1'
 
 # Install Twitter Bootstrap
 gem 'bootstrap-sass','2.3.2.0'
+# bcrypt encryption tool
+gem 'bcrypt-ruby', '3.0.1'
 
 gem 'pg', '0.15.1'
 #yaml_db was used to migrate DB from SQLite3 to postgreSQL
